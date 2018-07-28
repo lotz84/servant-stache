@@ -1,4 +1,6 @@
 # servant-stache
+[![](https://img.shields.io/hackage/v/servant-stache.svg)](https://hackage.haskell.org/package/servant-stache)
+
 Content-Types and template management for rendering Mustache templates in servant Web applications. This package is heavily inspired by [servant-ede](http://hackage.haskell.org/package/servant-ede). Documentation and examples available at `Servant.Mustache`.
 
 ## Example
