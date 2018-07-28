@@ -1,0 +1,15 @@
+body {
+  {{#darken}}
+  background-color: #222;
+  color: blue;
+  {{/darken}}
+  {{^darken}}
+  background-color: white;
+  color: back;
+  {{/darken}}
+}
+
+#content {
+  width: {{pageWidth}}px;
+  margin: 0 auto;
+}

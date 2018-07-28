@@ -1,0 +1,49 @@
+name:        servant-stache
+version:     0.1.0.0
+github:      lotz84/servant-stache
+license:     BSD3
+author:      "Tatsuya Hirose"
+maintainer:  "tatsuya.hirose.0804@gmail.com"
+copyright:   "2018 Tatsuya Hirose"
+category:    Web
+synopsis:    "Content-Types for rendering Mustache in servant"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:
+  Content-Types and template management for rendering Mustache templates in servant Web applications.
+  This package is heavily inspired by <http://hackage.haskell.org/package/servant-ede servant-ede>.
+  Documentation and examples available at "Servant.Mustache".
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+  - aeson
+  - http-media
+  - servant
+  - stache
+  - text
+  - transformers
+  - unordered-containers
+  - vector
+  - xss-sanitize
+
+executables:
+  example:
+    main:                Main.hs
+    source-dirs:         example
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aeson
+    - http-media
+    - servant-server
+    - servant-stache
+    - warp
