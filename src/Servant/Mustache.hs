@@ -43,7 +43,9 @@ import System.IO.Unsafe (unsafePerformIO)
 
 import Control.Monad.IO.Class (MonadIO(..))
 import Data.Aeson
-import qualified Data.HashMap.Strict as HM
+import qualified Data.Aeson.KeyMap as KM
+import qualified Data.Aeson.Key as KM
+import Data.Bifunctor (first)
 import Data.Text (Text, pack)
 import Data.Text.Lazy.Encoding (encodeUtf8)
 import qualified Data.Vector as V
@@ -182,10 +184,12 @@ instance (KnownSymbol file, ToJSON a) => MimeRender (HTML file) a where
     sanitizeValue (toJSON val)
 
 sanitizeObject :: Object -> Object
-sanitizeObject = HM.fromList . map sanitizeKV . HM.toList
+sanitizeObject = KM.fromList . map sanitizeKV . KM.toList
 
-sanitizeKV :: (Text, Value) -> (Text, Value)
-sanitizeKV (k, v) = (sanitize k, sanitizeValue v)
+sanitizeKV :: (Key, Value) -> (Key, Value)
+sanitizeKV (k, v) = (sanitizeKey k, sanitizeValue v)
+
+sanitizeKey = KM.fromText . sanitize . KM.toText
 
 sanitizeValue :: Value -> Value
 sanitizeValue (String s) = String (sanitize s)
